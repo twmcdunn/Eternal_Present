@@ -1,0 +1,1 @@
+"eternal present" is a provisional name for the project, not the name of the piece. The concept centers on a non-euclidean space, where we consider 15-TET intervals as aproximations of multiple conflicting or contradictory seven-limit lattices.
