@@ -213,9 +213,8 @@ public class Sequencer {
         return new double[] { rec.myTime, endTime };
     }
 
-    
-
-    public int[][] getChords(int[][] lastChords) {
+    // outputs pitch classes rather than pitches
+    public int[][] getChords() {
         int minAllowedSynt = 3;
         minAllowedSynt = 0;
 

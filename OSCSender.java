@@ -96,7 +96,7 @@ public class OSCSender {
 
     public void addSynthDef() {
         List<Object> args = new ArrayList<>();
-        args.add("/Users/maestro/Documents/Coding/Eternal_Present/sc_data/pno.scsyndef");
+        args.add(Main.absPath + "/sc_data/pno.scsyndef");
         OSCMessage msg = new OSCMessage("/d_load", args);
         try {
             sender.send(msg);

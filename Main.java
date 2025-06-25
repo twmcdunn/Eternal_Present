@@ -52,8 +52,14 @@ public class Main {
         // oscSender.testSynth1();
 
         Sequencer seq = new Sequencer(0);
-        int[][] lastChords = seq.getChords(new int[][] { { 75, 75, 75, 75, 75 }, { 75, 75, 75, 75, 75 } });
+        int[][] lastChords = new int[][] { { 75, 75, 75, 75, 75 }, { 75, 75, 75, 75, 75 } };// start at middle c
         for (int i = 0; i < 100; i++) {
+            int[][] newChords = seq.getChords();// progress chords
+            for (int n = 0; n < lastChords.length; n++) {
+                lastChords[n] = SmoothVoiceLeading.smoothVoiceLeading(lastChords[n], newChords[n], 15);// apply smooth
+                                                                                                       // voiceleading
+
+            }
             for (int note : lastChords[0]) {
                 oscSender.playPnoNote(12 * note / (double) seq.TET);
                 try {
@@ -80,8 +86,6 @@ public class Main {
             } catch (InterruptedException interEx) {
                 System.out.println(interEx);
             }
-
-            lastChords = seq.getChords(lastChords);
         }
 
         scSynth.destroy();
@@ -92,11 +96,12 @@ public class Main {
         String jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
         System.out.println(jarPath);
         if (jarPath.startsWith("/Users/maestro/Library/Application Support/Code/User/workspaceStorage")) {// vscode run
-            jarPath = "/Users/maestro/Documents/Coding/Eternal_Present/Main.java";
+            jarPath = "/Users/maestro/Documents/Coding/git_e_p/Eternal_Present/Main.java";//"/Users/maestro/Documents/Coding/Eternal_Present/Main.java";
         }
         absPath = new File(jarPath).getParentFile().getAbsolutePath();
-        ProcessBuilder launchSCSynth = new ProcessBuilder(absPath + "/SuperCollider/Contents/Resources/scsynth",
-                "-u", port + "");
+        ProcessBuilder launchSCSynth = new ProcessBuilder(absPath + "/Headless_SCSynth/Resources/scsynth",//"/SuperCollider/Contents/Resources/scsynth",
+                "-u",
+                port + "");
 
         new ProcessBuilder("killall", "scsynth").start();// kill any existing scsynth processes to avoid port conflict
         scSynth = launchSCSynth.start();
