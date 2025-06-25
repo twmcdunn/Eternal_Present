@@ -213,39 +213,7 @@ public class Sequencer {
         return new double[] { rec.myTime, endTime };
     }
 
-    public int[][][] getHighestAndLowest(ArrayList<Board> allPossibleMoves, int[][] lastChords) {
-        int highest = 0;
-        int lowest = Integer.MAX_VALUE;
-        int[][][] highestAndLowest = new int[2][][];
-
-        for (Board move : allPossibleMoves) {
-            int[][] chords = new int[move.size()][];
-            for (int i = 0; i < move.size(); i++) {
-                ArrayList<Integer> notes = move.get(i).notes();
-                chords[i] = new int[notes.size()];
-                for (int n = 0; n < notes.size(); n++)
-                    chords[i][n] = notes.get(n);
-            }
-            for (int i = 0; i < move.size(); i++) {
-                chords[i] = SmoothVoiceLeading.smoothVoicing(lastChords[i], chords[i], 15);
-            }
-            int tot = 0;
-            for (int[] c : chords) {
-                for (int note : c) {
-                    tot += note;
-                }
-            }
-            if (tot > highest) {
-                highest = tot;
-                highestAndLowest[0] = chords;
-            }
-            if (tot < lowest) {
-                lowest = tot;
-                highestAndLowest[1] = chords;
-            }
-        }
-        return highestAndLowest;
-    }
+    
 
     public int[][] getChords(int[][] lastChords) {
         int minAllowedSynt = 3;
@@ -253,22 +221,6 @@ public class Sequencer {
 
         ArrayList<Board> allPossibleMoves = getAllPossibleMoves(myGame);
         ArrayList<Game> allPossibleGames = new ArrayList<Game>();
-
-        // before filtering by chord pop and sytact distance
-        // create an array of highest and lowest pitched options, which *might* be used
-        // for gestures
-        // in order to do this, we must first calculate smooth voice leading.
-        // These options will fit into the MLT (or other modes) and will move only the
-        // correct number of notes
-        // filtering beyond this will not apply.
-        if (dir != 0.5 && Math.random() * 0.5 < Math.abs(0.5 - dir)) {
-            int[][][] highestAndLowest = getHighestAndLowest(allPossibleMoves, lastChords);
-            if (dir > 0.5) {
-                return highestAndLowest[0];
-            } else {
-                return highestAndLowest[1];
-            }
-        }
 
         // chordPopulation (number of times chords in new boards have already occured in
         // the game
@@ -341,18 +293,6 @@ public class Sequencer {
         }
 
         // System.out.println(cstr);
-
-        // smooth voicing is handled within this method since it has to be done this way
-        // in
-        // cases where dir != 0.5. While it would be cleaner to return 0 - tet values
-        // here
-        // and make musical decision about voicing elsewhere, we consistently do it
-        // within
-        // this method in order to avoid needing to do it twice in cases where dir !=
-        // 0.5
-        for (int i = 0; i < chords.length; i++) {
-            chords[i] = SmoothVoiceLeading.smoothVoicing(lastChords[i], chords[i], 15);
-        }
 
         return chords;
     }
