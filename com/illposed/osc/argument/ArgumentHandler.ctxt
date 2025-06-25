@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=ArgumentHandler
+comment0.text=\n\ Handles\ all\ aspects\ regarding\ a\ single\ OSC\ <i>Argument</i>\ type.\n\ This\ is\ used\ to\ {@link\ \#parse}\ (convert\ from\ OSC\ byte\ representation\ to\ Java\ objects),\n\ and\ to\ {@link\ \#serialize}\ (convert\ from\ Java\ objects\ to\ OSC\ byte\ representation).\n\ @param\ <T>\ Java\ type\ of\ the\ OSC\ argument\ this\ handler\ deals\ with\n
+comment1.params=
+comment1.target=char\ getDefaultIdentifier()
+comment1.text=\n\ Returns\ the\ default\ identifier\ character\ of\ this\ type\ of\ OSC\ Argument,\n\ which\ is\ the\ character\ used\ in\ the\ types\ string\ of\ an\ OSC\ Message.\n\ @return\ default\ type\ identifier,\ as\ specified\ in\ the\ OSC\ specification,\n\ \ \ if\ this\ type\ is\ part\ of\ it\n
+comment2.params=
+comment2.target=java.lang.Class\ getJavaClass()
+comment2.text=\n\ Returns\ the\ Java\ class\ this\ OSC\ type\ converts\ to/from.\n\ Objects\ of\ this\ class\ are\ serialized\ to\ this\ OSC\ Argument\ type,\n\ and\ this\ type\ is\ parsed\ into\ Java\ Objects\ of\ this\ class.\n\ @return\ the\ Java\ class\ this\ OSC\ type\ converts\ to/from.\n
+comment3.params=properties
+comment3.target=void\ setProperties(java.util.Map)
+comment3.text=\n\ Used\ to\ configure\ special\ properties\ that\ might\ further\ specify\n\ parsing\ and/or\ serializing\ objects\ of\ this\ type.\n\ Most\ default\ OSC\ Argument\ are\ "static"\ in\ this\ regard,\n\ as\ they\ have\ a\ single,\ not\ configurable\ way\ of\ operating.\n\ But\ the\ <code>String</code>\ type\ for\ example,\ allows\ to\ specify\ the\ character-set.\n\ This\ method\ is\ usually\ called\ once\ for\ all\ types\ before\ the\ parsing/serialization\ starts.\n\ Note\ that\ this\ set\ of\ properties\ is\ parser/serializer\ global,\n\ meaning\ that\ there\ is\ a\ single\ set\ per\ parser/serializer\n\ and\ all\ the\ associated\ handlers,\n\ which\ means\ one\ has\ to\ make\ sure\ to\ not\ use\ a\ single\ property\ key\n\ in\ multiple\ places\ (i.e.\ two\ different\ handlers)\n\ with\ different\ meaning\ or\ syntax.\n\ @param\ properties\ a\ set\ of\ properties\ that\ usually\ gets\ passed\ over\ to\ all\ types,\n\ \ \ for\ example\:\ <code>properties.put(StringArgumentHandler.PROP_NAME_CHARSET,\ Charset.defaultCharset());</code>\n
+comment4.params=
+comment4.target=boolean\ isMarkerOnly()
+comment4.text=\n\ Indicates\ whether\ this\ type\ is\ only\ a\ marker\ type,\n\ meaning\ all\ of\ its\ information\ is\ incorporated\ in\ the\ type\ identifier,\n\ and\ that\ it\ comes\ with\ no\ additional\ data.\n\ This\ means\ that\ the\ {@link\ \#parse}\ and\ {@link\ \#serialize}\ methods\ never\ throw\ exceptions,\n\ and\ that\ {@link\ \#parse}\ always\ returns\ the\ same\ value,\ even\ <code>parse(null)</code>,\n\ and\ that\ {@link\ \#serialize}\ is\ basically\ a\ no-op.\n\ @return\ <code>true</code>\ if\ this\ is\ only\ a\ marker\ type,\n\ \ \ <code>false</code>\ if\ it\ comes\ with\ additional\ data\n
+comment5.params=
+comment5.target=ArgumentHandler\ clone()
+comment6.params=input
+comment6.target=java.lang.Object\ parse(java.nio.ByteBuffer)
+comment6.text=\n\ Converts\ from\ the\ OSC\ byte\ representation\ to\ a\ Java\ object.\n\ @param\ input\ contains\ the\ OSC\ byte\ representation\ of\ one\ instance\ of\ this\ type.\n\ \ \ The\ data\ for\ this\ types\ object\ starts\ at\ the\ current\ position.\n\ \ \ Where\ the\ end\ is,\ depends\ on\ the\ specific\ type.\n\ \ \ After\ the\ invocation\ of\ this\ method,\ the\ current\ position\ should\ point\ at\n\ \ \ the\ last\ byte\ of\ this\ types\ object\ +\ 1.\n\ @return\ the\ parsed\ Java\ object\n\ @throws\ OSCParseException\ if\ anything\ went\ wrong\ while\ parsing,\n\ \ \ for\ example\ invalid\ or\ incomplete\ data\ in\ the\ input\n
+comment7.params=output\ value
+comment7.target=void\ serialize(com.illposed.osc.BytesReceiver,\ java.lang.Object)
+comment7.text=\n\ Converts\ from\ a\ Java\ objects\ to\ the\ OSC\ byte\ representation.\n\ @param\ output\ where\ the\ OSC\ byte\ representation\ of\ value\ has\ to\ be\ written\ to\n\ @param\ value\ the\ Java\ value\ to\ be\ serialized\ into\ its\ OSC\ byte\ representation\n\ @throws\ OSCSerializeException\ if\ anything\ went\ wrong\ while\ serializing,\n\ \ \ for\ example\ an\ invalid\ value\ was\ given\n
+numComments=8

@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.target=NetworkProtocol
+comment0.text=\n\ An\ enumeration\ of\ network\ protocols\ by\ which\ OSC\ packets\ can\ be\ sent.\n
+numComments=1

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=OSCPacketEvent
+comment0.text=\n\ Event\ state\ of\ reception\ of\ an\ OSC\ packet.\n
+comment1.params=source\ packet
+comment1.target=OSCPacketEvent(java.lang.Object,\ OSCPacket)
+comment1.text=\n\ Creates\ a\ new\ packet\ received\ event.\n\ @param\ source\ the\ source\ of\ the\ packet\n\ @param\ packet\ the\ packet\ to\ process\n
+comment2.params=
+comment2.target=OSCPacket\ getPacket()
+comment2.text=\n\ Returns\ the\ main\ content\ of\ this\ event.\n\ @return\ the\ received\ packet\n
+numComments=3

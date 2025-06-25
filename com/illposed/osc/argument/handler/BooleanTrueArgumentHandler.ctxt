@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=BooleanTrueArgumentHandler
+comment0.text=\n\ Parses\ and\ serializes\ an\ OSC\ boolean\ TRUE\ type.\n
+comment1.params=
+comment1.target=BooleanTrueArgumentHandler()
+comment1.text=Allow\ overriding,\ but\ somewhat\ enforce\ the\ ugly\ singleton.
+comment2.params=
+comment2.target=char\ getDefaultIdentifier()
+comment3.params=
+comment3.target=java.lang.Class\ getJavaClass()
+comment4.params=properties
+comment4.target=void\ setProperties(java.util.Map)
+comment5.params=
+comment5.target=boolean\ isMarkerOnly()
+comment6.params=
+comment6.target=BooleanTrueArgumentHandler\ clone()
+comment7.params=input
+comment7.target=java.lang.Boolean\ parse(java.nio.ByteBuffer)
+comment8.params=output\ value
+comment8.target=void\ serialize(com.illposed.osc.BytesReceiver,\ java.lang.Boolean)
+numComments=9

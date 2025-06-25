@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=OSCPortOutBuilder
+comment1.params=
+comment1.target=OSCPortOut\ build()
+comment2.params=port
+comment2.target=OSCPortOutBuilder\ setPort(int)
+comment3.params=port
+comment3.target=OSCPortOutBuilder\ setRemotePort(int)
+comment4.params=port
+comment4.target=OSCPortOutBuilder\ setLocalPort(int)
+comment5.params=address
+comment5.target=OSCPortOutBuilder\ setSocketAddress(java.net.SocketAddress)
+comment6.params=address
+comment6.target=OSCPortOutBuilder\ setLocalSocketAddress(java.net.SocketAddress)
+comment7.params=address
+comment7.target=OSCPortOutBuilder\ setRemoteSocketAddress(java.net.SocketAddress)
+comment8.params=protocol
+comment8.target=OSCPortOutBuilder\ setNetworkProtocol(NetworkProtocol)
+numComments=9

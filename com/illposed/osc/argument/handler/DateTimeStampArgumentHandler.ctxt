@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=DateTimeStampArgumentHandler
+comment0.text=\n\ Parses\ and\ serializes\ an\ OSC\ <i>Time-tag</i>,\n\ using\ {@link\ Date}\ as\ a\ wrapper,\n\ and\ thus\ loosing\ out\ on\ the\ resolution.\n\ You\ should\ consider\ using\ {@link\ TimeTag64ArgumentHandler}\ instead;\n
+comment1.params=
+comment1.target=DateTimeStampArgumentHandler()
+comment1.text=Allow\ overriding,\ but\ somewhat\ enforce\ the\ ugly\ singleton.
+comment2.params=
+comment2.target=char\ getDefaultIdentifier()
+comment3.params=
+comment3.target=java.lang.Class\ getJavaClass()
+comment4.params=epochIndicatorTime
+comment4.target=void\ setEpochIndicatorTime(java.lang.Long)
+comment5.params=properties
+comment5.target=void\ setProperties(java.util.Map)
+comment6.params=
+comment6.target=boolean\ isMarkerOnly()
+comment7.params=
+comment7.target=DateTimeStampArgumentHandler\ clone()
+comment8.params=input
+comment8.target=java.util.Date\ parse(java.nio.ByteBuffer)
+comment9.params=output\ value
+comment9.target=void\ serialize(com.illposed.osc.BytesReceiver,\ java.util.Date)
+numComments=10

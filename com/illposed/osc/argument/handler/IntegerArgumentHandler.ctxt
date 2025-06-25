@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=IntegerArgumentHandler
+comment0.text=\n\ Parses\ and\ serializes\ an\ OSC\ integer\ type\ (32bit\ signed\ integer).\n
+comment1.params=
+comment1.target=IntegerArgumentHandler()
+comment1.text=Allow\ overriding,\ but\ somewhat\ enforce\ the\ ugly\ singleton.
+comment2.params=
+comment2.target=char\ getDefaultIdentifier()
+comment3.params=
+comment3.target=java.lang.Class\ getJavaClass()
+comment4.params=properties
+comment4.target=void\ setProperties(java.util.Map)
+comment5.params=
+comment5.target=boolean\ isMarkerOnly()
+comment6.params=
+comment6.target=IntegerArgumentHandler\ clone()
+comment7.params=input
+comment7.target=java.lang.Integer\ parse(java.nio.ByteBuffer)
+comment8.params=output\ value
+comment8.target=void\ serialize(com.illposed.osc.BytesReceiver,\ java.lang.Integer)
+numComments=9

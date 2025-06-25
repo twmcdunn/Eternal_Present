@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.target=CombinedMessageSelector
+comment0.text=\n\ Checks\ whether\ a\ certain\ logical\ combination\ of\ two\ message\ selectors\ matches.\n\n\ An\ example\:<br>\n\ <blockquote><pre>{@code\n\ //\ matches\ only\ if\ both\ the\ address\ and\ the\ argument\ tags\ match\n\ MessageSelector\ matcher\ \=\ new\ CombinedMessageSelector(\n\ \ \ \ \ \ \ \ \ new\ OSCPatternAddressMessageSelector("/hello/*"),\n\ \ \ \ \ \ \ \ \ new\ OSCPatternTypeTagsMessageSelector("tiff"),\n\ \ \ \ \ \ \ \ \ CombinedMessageSelector.LogicOperator.AND);\n\ }</pre></blockquote>\n
+numComments=1

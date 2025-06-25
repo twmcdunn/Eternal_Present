@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=OSCMessageInfo
+comment0.text=\n\ Holds\ (meta-)info\ about\ a\ message.\n\ This\ might\ be\ used\ by\ some\ implementations\ of\ {@link\ MessageSelector},\ for\ example.\n
+comment1.params=argumentTypeTags
+comment1.target=OSCMessageInfo(java.lang.CharSequence)
+comment1.text=\n\ @param\ argumentTypeTags\ the\ <i>Arguments\ Type\ Tags</i>\ string,\ for\ example\ "iiscdi[fff]h"\n
+comment2.params=
+comment2.target=java.lang.CharSequence\ getArgumentTypeTags()
+comment2.text=\n\ Returns\ the\ <i>Arguments\ Type\ Tags</i>\ string.\n\ @return\ for\ example\ "iiscdi[fff]h"\n
+numComments=3

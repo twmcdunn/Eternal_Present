@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=UDPTransport
+comment0.text=\n\ A\ {@link\ Transport}\ implementation\ for\ sending\ and\ receiving\ OSC\ packets\ over\n\ a\ network\ via\ UDP.\n
+comment1.params=local\ remote
+comment1.target=UDPTransport(java.net.SocketAddress,\ java.net.SocketAddress)
+comment10.params=
+comment10.target=java.lang.String\ toString()
+comment2.params=local\ remote\ serializerAndParserBuilder
+comment2.target=UDPTransport(java.net.SocketAddress,\ java.net.SocketAddress,\ com.illposed.osc.OSCSerializerAndParserBuilder)
+comment3.params=
+comment3.target=void\ connect()
+comment4.params=
+comment4.target=void\ disconnect()
+comment5.params=
+comment5.target=boolean\ isConnected()
+comment6.params=
+comment6.target=void\ close()
+comment6.text=\n\ Close\ the\ socket\ and\ free-up\ resources.\n\ It\ is\ recommended\ that\ clients\ call\ this\ when\ they\ are\ done\ with\ the\ port.\n\ @throws\ IOException\ If\ an\ I/O\ error\ occurs\ on\ the\ channel\n
+comment7.params=packet
+comment7.target=void\ send(com.illposed.osc.OSCPacket)
+comment8.params=
+comment8.target=com.illposed.osc.OSCPacket\ receive()
+comment9.params=
+comment9.target=boolean\ isBlocking()
+numComments=11

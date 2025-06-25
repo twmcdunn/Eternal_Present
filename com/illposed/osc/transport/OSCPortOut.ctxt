@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=OSCPortOut
+comment0.text=\n\ Sends\ OSC\ packets\ to\ a\ specific\ address\ and\ port.\n\n\ To\ send\ an\ OSC\ message,\ call\ {@link\ \#send(OSCPacket)}.\n\n\ An\ example\:<br>\n\ <blockquote><pre>{@code\n\ //\ sends\ from\ "localhost"\n\ OSCPortOut\ sender\ \=\ new\ OSCPortOut();\n\ List<Object>\ args\ \=\ new\ ArrayList<Object>(2);\n\ args.add(3);\n\ args.add("hello");\n\ OSCMessage\ msg\ \=\ new\ OSCMessage("/sayHello",\ args);\n\ try\ {\n\ \tsender.send(msg);\n\ }\ catch\ (Exception\ ex)\ {\n\ \tSystem.err.println("Couldn't\ send");\n\ }\n\ }</pre></blockquote>\n
+comment1.params=serializerBuilder\ remote\ local\ protocol
+comment1.target=OSCPortOut(com.illposed.osc.OSCSerializerAndParserBuilder,\ java.net.SocketAddress,\ java.net.SocketAddress,\ NetworkProtocol)
+comment1.text=\n\ Creates\ an\ OSC-Port\ that\ sends\ to\ {@code\ remote}\ from\ the\ specified\ local\ socket,\n\ using\ an\ {@link\ com.illposed.osc.OSCSerializer}\n\ created\ from\ the\ given\ factory\ for\ converting\ the\ packets.\n\ @param\ serializerBuilder\ used\ to\ create\ a\ single\n\ \ \ {@link\ com.illposed.osc.OSCSerializer}\ that\ is\ used\ to\ convert\n\ \ \ all\ packets\ to\ be\ sent\ from\ this\ port,\n\ \ \ from\ Java\ objects\ to\ their\ OSC\ byte\ array\ representations\n\ @param\ remote\ where\ we\ will\ send\ the\ OSC\ byte\ array\ data\ to\n\ @param\ local\ the\ local\ address\ we\ use\ to\ connect\ to\ the\ remote\n\ @param\ protocol\ the\ network\ protocol\ by\ which\ to\ send\ OSC\ packets\n\ @throws\ IOException\ if\ we\ fail\ to\ bind\ a\ channel\ to\ the\ local\ address\n
+comment2.params=serializerBuilder\ remote\ local
+comment2.target=OSCPortOut(com.illposed.osc.OSCSerializerAndParserBuilder,\ java.net.SocketAddress,\ java.net.SocketAddress)
+comment3.params=serializerFactory\ remote
+comment3.target=OSCPortOut(com.illposed.osc.OSCSerializerAndParserBuilder,\ java.net.SocketAddress)
+comment4.params=remote
+comment4.target=OSCPortOut(java.net.SocketAddress)
+comment5.params=remote\ port
+comment5.target=OSCPortOut(java.net.InetAddress,\ int)
+comment5.text=\n\ Creates\ an\ OSC-Port\ that\ sends\ to\ {@code\ remote}\:{@code\ port}.\n\ @param\ remote\ the\ address\ to\ send\ to\n\ @param\ port\ the\ port\ number\ to\ send\ to\n\ @throws\ IOException\ if\ we\ fail\ to\ bind\ a\ channel\ to\ the\ local\ address\n
+comment6.params=remote
+comment6.target=OSCPortOut(java.net.InetAddress)
+comment6.text=\n\ Creates\ an\ OSC-Port\ that\ sends\ to\ {@code\ remote}\:{@link\ \#DEFAULT_SC_OSC_PORT}.\n\ @param\ remote\ the\ address\ to\ send\ to\n\ @throws\ IOException\ if\ we\ fail\ to\ bind\ a\ channel\ to\ the\ local\ address\n
+comment7.params=
+comment7.target=OSCPortOut()
+comment7.text=\n\ Creates\ an\ OSC-Port\ that\ sends\ to\ "localhost"\:{@link\ \#DEFAULT_SC_OSC_PORT}.\n\ @throws\ IOException\ if\ we\ fail\ to\ bind\ a\ channel\ to\ the\ local\ address,\n\ \ \ or\ if\ the\ local\ host\ name\ could\ not\ be\ resolved\ into\ an\ address\n
+comment8.params=packet
+comment8.target=void\ send(com.illposed.osc.OSCPacket)
+comment8.text=\n\ Converts\ and\ sends\ an\ OSC\ packet\ (message\ or\ bundle)\ to\ the\ remote\ address.\n\ @param\ packet\ the\ bundle\ or\ message\ to\ be\ converted\ and\ sent\n\ @throws\ IOException\ if\ a\ socket\ I/O\ error\ occurs\ while\ sending\n\ @throws\ OSCSerializeException\ if\ the\ packet\ fails\ to\ serialize,\n\ \ \ including\ when\ the\ buffer\ overruns\n
+numComments=9

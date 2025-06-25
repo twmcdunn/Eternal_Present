@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=OSCBadDataListener
+comment0.text=\n\ Receives\ data\ that\ could\ not\ be\ properly\ parsed\ as\ OSC\ packet,\n\ be\ it\ due\ to\ the\ data\ being\ invalid\ OSC,\ or\ a\ bug\ in\ this\ library.\n\ This\ is\ most\ useful\ for\ error\ logging\ or\ debugging.\n
+comment1.params=evt
+comment1.target=void\ badDataReceived(OSCBadDataEvent)
+comment1.text=\n\ Process\ a\ bad/unrecognized\ bunch\ of\ data,\n\ which\ we\ expected\ to\ be\ OSC\ protocol\ formatted.\n\ @param\ evt\ bad\ OSC\ data\ event\ state\n
+numComments=2

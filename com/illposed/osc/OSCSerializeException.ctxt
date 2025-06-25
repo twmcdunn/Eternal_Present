@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=OSCSerializeException
+comment1.params=
+comment1.target=OSCSerializeException()
+comment2.params=message
+comment2.target=OSCSerializeException(java.lang.String)
+comment3.params=message\ cause
+comment3.target=OSCSerializeException(java.lang.String,\ java.lang.Throwable)
+comment4.params=cause
+comment4.target=OSCSerializeException(java.lang.Throwable)
+numComments=5

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=JavaRegexAddressMessageSelector
+comment0.text=\n\ Checks\ whether\ an\ OSC\ <i>Address\ Pattern</i>\ matches\ a\ given\ Java\ regular\ expression.\n
+comment1.params=selector
+comment1.target=JavaRegexAddressMessageSelector(java.util.regex.Pattern)
+comment2.params=selectorRegex
+comment2.target=JavaRegexAddressMessageSelector(java.lang.String)
+comment3.params=other
+comment3.target=boolean\ equals(java.lang.Object)
+comment4.params=
+comment4.target=int\ hashCode()
+comment5.params=
+comment5.target=boolean\ isInfoRequired()
+comment6.params=messageEvent
+comment6.target=boolean\ matches(com.illposed.osc.OSCMessageEvent)
+numComments=7

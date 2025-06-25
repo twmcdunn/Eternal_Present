@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=ByteArrayListBytesReceiver
+comment0.text=\n\ Implementation\ of\ a\ {@link\ BytesReceiver}\ using\ a\ {@code\ List<byte[]>}\n\ as\ the\ internal\ buffer.\n\ This\ is\ useful\ if\ we\ do\ not\ now\ initially\ know\ the\ size\n\ of\ the\ expected\ data\ in\ total,\ and\ at\ the\ same\ time\ want\ to\ prevent\n\ re-allocating\ {@code\ ByteBuffer}\ or\ {@code\ byte[]}\n\ whenever\ the\ buffer\ gets\ too\ small.\n\ It\ is\ thus\ an\ ideal\ candidate\ for\ asynchronous\ data\ receiving,\n\ as\ is\ the\ case\ in\ UDP.\n
+comment1.params=
+comment1.target=ByteArrayListBytesReceiver()
+comment2.params=data
+comment2.target=BytesReceiver\ put(byte)
+comment3.params=src
+comment3.target=BytesReceiver\ put(byte[])
+comment4.params=src
+comment4.target=BytesReceiver\ put(java.nio.ByteBuffer)
+comment5.params=
+comment5.target=BytesReceiver\ clear()
+comment6.params=
+comment6.target=int\ position()
+comment7.params=
+comment7.target=byte[]\ toByteArray()
+comment8.params=dest
+comment8.target=void\ writeTo(java.io.OutputStream)
+numComments=9

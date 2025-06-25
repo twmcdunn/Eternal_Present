@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=BufferBytesReceiver
+comment0.text=\n\ Implementation\ of\ a\ {@link\ BytesReceiver}\ using\ a\ {@code\ ByteBuffer}\n\ as\ the\ internal\ buffer.\n\ This\ is\ useful\ if\ we\ know\ an\ upper\ limit\ for\ the\ size\n\ of\ the\ expected\ data\ in\ total.\n\ It\ is\ thus\ an\ ideal\ candidate\ for\ synchronous\ data\ receiving,\n\ as\ is\ the\ case\ in\ TCP.\n
+comment1.params=buffer
+comment1.target=BufferBytesReceiver(java.nio.ByteBuffer)
+comment2.params=data
+comment2.target=BytesReceiver\ put(byte)
+comment3.params=src
+comment3.target=BytesReceiver\ put(byte[])
+comment4.params=src
+comment4.target=BytesReceiver\ put(java.nio.ByteBuffer)
+comment5.params=
+comment5.target=BytesReceiver\ clear()
+comment6.params=
+comment6.target=int\ position()
+comment7.params=
+comment7.target=java.nio.ByteBuffer\ getBuffer()
+comment8.params=
+comment8.target=byte[]\ toByteArray()
+numComments=9

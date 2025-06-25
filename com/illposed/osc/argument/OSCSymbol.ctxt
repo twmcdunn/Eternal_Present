@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=OSCSymbol
+comment0.text=\n\ Represents\ an\ OSC\ compliant\ symbol.\n\ Technically,\ this\ is\ not\ different\ from\ a\ {@code\ String},\ but\ some\ systems\ may\ differentiate\n\ between\ "strings"\ and\ "symbols".\n
+comment1.params=value
+comment1.target=OSCSymbol(java.lang.String)
+comment2.params=other
+comment2.target=boolean\ equals(java.lang.Object)
+comment3.params=
+comment3.target=int\ hashCode()
+comment4.params=other
+comment4.target=int\ compareTo(OSCSymbol)
+comment5.params=
+comment5.target=OSCSymbol\ clone()
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment7.params=str
+comment7.target=OSCSymbol\ valueOf(java.lang.String)
+numComments=8

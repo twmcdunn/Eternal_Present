@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=OSCImpulse
+comment0.text=\n\ An\ OSC\ 1.0\ optional,\ and\ OSC\ 1.1\ required\ argument\ type.\n\ Impulse\ aka\ "bang",\ is\ used\ for\ event\ triggers.\n\ No\ bytes\ are\ allocated\ in\ the\ argument\ data.\n\ This\ type\ was\ named\ "Infinitum"\ in\ OSC\ 1.0.\n\ Use\ like\ this\:\n\ <blockquote><pre>{@code\n\ OSCMessage\ msg\ \=\ new\ OSCMessage("/my/address");\n\ msg.addArgument(OSCImpulse.INSTANCE);\n\ }</pre></blockquote>\n
+comment1.params=
+comment1.target=OSCImpulse()
+comment2.params=
+comment2.target=java.lang.String\ toString()
+numComments=3

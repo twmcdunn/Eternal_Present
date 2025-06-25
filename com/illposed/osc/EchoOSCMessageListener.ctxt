@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=EchoOSCMessageListener
+comment0.text=\n\ Prints\ out\ received\ messages\ to\ a\ {@link\ Logger}.\n\ Messages\ are\ printed\ in\ this\ format\:\n\ <blockquote><pre>{@code\n\ address\n\ \ \ type-tags\n\ \ \ \ \ argument-0\n\ \ \ \ \ argument-1\n\ \ \ \ \ ...\n\ \ \ \ \ argument-(n-1)\n\ new-line\n\ }</pre></blockquote>\n\ so\ for\ example\:\n\ <blockquote><pre>{@code\n\ /my/messages/address\n\ \ \ iffc\n\ \ \ \ \ 100\n\ \ \ \ \ 0.3\n\ \ \ \ \ 99.2\n\ \ \ \ \ x\n\n\ /my/other/messages/address\n\ \ \ fsi\n\ \ \ \ \ 9234.63\n\ \ \ \ \ hello\ world\n\ \ \ \ \ 8325\n\n\ }</pre></blockquote>\n\ @see\ ConsoleEchoServer\n
+comment1.params=log
+comment1.target=EchoOSCMessageListener(org.slf4j.Logger)
+comment2.params=
+comment2.target=EchoOSCMessageListener()
+comment3.params=event
+comment3.target=void\ acceptMessage(OSCMessageEvent)
+numComments=4

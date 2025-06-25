@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=OSCPacketListener
+comment0.text=\n\ A\ listener\ that\ handles\ <b>packets</b>.\ A\ packet\ can\ be\ either\ a\ bundle\ or\ a\n\ message.\n\n\ This\ is\ useful\ if\ you\ need\ to\ handle\ the\ messages\ in\ bundles\ differently\ than\n\ individual\ messages.\n\n\ If\ you\ don't\ have\ this\ constraint,\ you\ might\ prefer\ to\ use\ OSCMessageListener\n\ instead.\n
+comment1.params=event
+comment1.target=void\ handlePacket(OSCPacketEvent)
+comment1.text=\n\ Process\ an\ incoming\ packet.\n\ @param\ event\ contains\ the\ packet\ content\ and\ meta-data\n
+comment2.params=event
+comment2.target=void\ handleBadData(OSCBadDataEvent)
+comment2.text=\n\ Process\ a\ bad\ data\ event.\n\ @param\ event\ the\ bad\ data\ event\ to\ handle\n
+numComments=3

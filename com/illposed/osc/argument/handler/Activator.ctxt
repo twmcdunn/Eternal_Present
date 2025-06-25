@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Activator
+comment0.text=\n\ Allows\ to\ easily\ register\ and\ unregister\ all\ types\ in\ this\ package.\n
+comment1.params=
+comment1.target=Activator()
+comment2.params=
+comment2.target=java.util.Map\ createParserTypes()
+comment3.params=
+comment3.target=java.util.List\ createSerializerTypes()
+numComments=4

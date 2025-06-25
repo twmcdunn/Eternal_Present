@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.target=OSCPacket
+comment0.text=\n\ An\ abstract\ superclass\ for\ messages\ and\ bundles.\n\n\ The\ actual\ packets\ are\:\n\ <ul>\n\ <li>{@link\ OSCMessage}\:\ simple\ OSC\ messages\n\ <li>{@link\ OSCBundle}\:\ OSC\ messages\ with\ timestamps\n\ \ \ and/or\ made\ up\ of\ multiple\ messages\n\ </ul>\n
+numComments=1

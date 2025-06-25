@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ConsoleEchoServer
+comment0.text=\n\ Runs\ a\ basic\ OSC\ server,\ printing\ all\ received\ OSC\ content\n\ to\ <code>stdout</code>.\n\ Errors\ and\ warnings\ are\ printed\ to\ <code>stderr</code>.\n\ @see\ EchoOSCMessageListener\n
+comment1.params=serverAddress\ log
+comment1.target=ConsoleEchoServer(java.net.SocketAddress,\ org.slf4j.Logger)
+comment2.params=
+comment2.target=void\ start()
+comment3.params=args
+comment3.target=java.net.SocketAddress\ parseServerAddress(java.lang.String[])
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5

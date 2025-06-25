@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=OSCMidiMessage
+comment0.text=\n\ This\ represents\ an\ OSC\ compliant\ MIDI\ message.\n\ From\ the\ 1.0\ specification\:\ Bytes\ from\ MSB\ to\ LSB\ are\:\ port\ id,\ status\ byte,\ data1,\ data2\n
+comment1.params=portId\ status\ data1\ data2
+comment1.target=OSCMidiMessage(byte,\ byte,\ byte,\ byte)
+comment10.params=
+comment10.target=OSCMidiMessage\ clone()
+comment11.params=content
+comment11.target=OSCMidiMessage\ valueOf(byte[])
+comment2.params=
+comment2.target=byte[]\ toContentArray()
+comment3.params=
+comment3.target=byte\ getPortId()
+comment4.params=
+comment4.target=byte\ getStatus()
+comment5.params=
+comment5.target=byte\ getData1()
+comment6.params=
+comment6.target=byte\ getData2()
+comment7.params=other
+comment7.target=boolean\ equals(java.lang.Object)
+comment8.params=
+comment8.target=int\ hashCode()
+comment9.params=other
+comment9.target=int\ compareTo(OSCMidiMessage)
+numComments=12

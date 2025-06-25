@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=OSCMessageEvent
+comment0.text=\n\ Event\ state\ of\ reception\ of\ an\ OSC\ Message.\n
+comment1.params=source\ time\ message
+comment1.target=OSCMessageEvent(java.lang.Object,\ argument.OSCTimeTag64,\ OSCMessage)
+comment1.text=\n\ Creates\ a\ new\ message\ received\ event.\n\ @param\ source\ The\ object\ on\ which\ the\ Event\ initially\ occurred.\n\ @param\ time\ when\ the\ message\ is\ to\ be\ processed.\n\ \ \ This\ should\ be\ the\ time\ the\ event\ is\ delivered,\ or\ {@code\ OSCTimeTag64.IMMEDIATE}.\n\ \ \ It\ may\ never\ be\ {@code\ null}.\n\ @param\ message\ the\ message\ that\ was\ received/is\ to\ be\ processed\n
+comment2.params=
+comment2.target=argument.OSCTimeTag64\ getTime()
+comment2.text=\n\ Returns\ the\ time\ for\ message\ processing.\n\ @return\ the\ time\ the\ message\ is\ to\ be\ processed.\n\ \t\ This\ should\ be\ the\ time\ the\ event\ is\ delivered,\ or\ {@code\ OSCTimeTag64.IMMEDIATE}.\n\ \t\ It\ may\ never\ be\ {@code\ null}.\n
+comment3.params=
+comment3.target=OSCMessage\ getMessage()
+comment3.text=\n\ Returns\ the\ main\ content\ of\ this\ event.\n\ @return\ the\ received\ message\n
+numComments=4

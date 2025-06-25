@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=SerializableByteBuffer
+comment0.text=\n\ Allows\ to\ serialize\ and\ deserialize\ a\ {@link\ ByteBuffer}.\n
+comment1.params=buffer
+comment1.target=SerializableByteBuffer(java.nio.ByteBuffer)
+comment2.params=
+comment2.target=java.nio.ByteBuffer\ getBuffer()
+comment3.params=serializer
+comment3.target=void\ writeObject(java.io.ObjectOutputStream)
+comment4.params=deserializer
+comment4.target=void\ readObject(java.io.ObjectInputStream)
+numComments=5

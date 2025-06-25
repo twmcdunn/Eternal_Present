@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=OSCUnsigned
+comment0.text=\n\ This\ class\ represents\ an\ OSC\ 32bit\ unsigned\ integer.\n\ We\ use\ this\ class,\ because\ Java\ has\ no\ matching\ primitive\ data-type,\n\ and\ <tt>long</tt>\ is\ already\ used\ for\ signed\ 64bit\ integers.\n
+comment1.params=value
+comment1.target=OSCUnsigned(long)
+comment2.params=other
+comment2.target=boolean\ equals(java.lang.Object)
+comment3.params=
+comment3.target=int\ hashCode()
+comment4.params=other
+comment4.target=int\ compareTo(OSCUnsigned)
+comment5.params=
+comment5.target=OSCUnsigned\ clone()
+comment6.params=
+comment6.target=long\ toLong()
+comment6.text=\n\ Returns\ the\ 32bit\ unsigned\ value\ in\ form\ of\ a\ long.\n\ @return\ contains\ the\ value\ in\ the\ lower/least\ significant\ 32\ bits;\ always\ positive\n
+comment7.params=
+comment7.target=java.lang.String\ toString()
+comment8.params=bytes
+comment8.target=OSCUnsigned\ valueOf(byte[])
+comment9.params=value
+comment9.target=OSCUnsigned\ valueOf(long)
+numComments=10

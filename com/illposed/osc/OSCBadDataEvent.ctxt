@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=OSCBadDataEvent
+comment0.text=\n\ Event\ state\ of\ reception\ of\ unrecognized/bad\ (supposed\ to\ be)\ OSC\ data.\n
+comment1.params=source\ data\ exception
+comment1.target=OSCBadDataEvent(java.lang.Object,\ java.nio.ByteBuffer,\ OSCParseException)
+comment2.params=
+comment2.target=java.nio.ByteBuffer\ getData()
+comment2.text=\n\ Returns\ the\ bad/unrecognized\ bunch\ of\ data,\n\ which\ we\ expected\ to\ be\ OSC\ protocol\ formatted.\n\ @return\ the\ unrecognized,\ raw\ data,\ as\ received\ from\n\ \ \ {@link\ com.illposed.osc.transport.OSCPortIn},\ for\ example\n
+comment3.params=
+comment3.target=OSCParseException\ getException()
+comment3.text=\n\ Returns\ the\ exception\ that\ was\ triggered\ this\ event,\n\ indicating\ that\ the\ received\ data\ is\ not\ proper\ OSC\ data.\n\ @return\ details\ about\ what\ went\ wrong\ when\ parsing\ the\ data\n
+numComments=4

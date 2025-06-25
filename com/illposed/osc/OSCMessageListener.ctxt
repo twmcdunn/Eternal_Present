@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=OSCMessageListener
+comment0.text=\n\ Allows\ to\ listen\ to\ incoming\ messages.\n\ In\ OSC\ speak,\ this\ is\ a\ <i>Method</i>,\ and\ it\ listens\ to\ <i>Messages</i>.\n
+comment1.params=event
+comment1.target=void\ acceptMessage(OSCMessageEvent)
+comment1.text=\n\ Process\ a\ matching,\ incoming\ OSC\ Message.\n\ @param\ event\ the\ message\ received\ event\ to\ be\ processed\n
+numComments=2

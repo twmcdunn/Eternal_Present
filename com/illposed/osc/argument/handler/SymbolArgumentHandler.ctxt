@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=SymbolArgumentHandler
+comment0.text=\n\ Parses\ and\ serializes\ an\ OSC\ symbol\ type.\n
+comment1.params=
+comment1.target=SymbolArgumentHandler()
+comment2.params=
+comment2.target=StringArgumentHandler\ getInternalStringArgumentHandler()
+comment3.params=
+comment3.target=char\ getDefaultIdentifier()
+comment4.params=
+comment4.target=java.lang.Class\ getJavaClass()
+comment5.params=properties
+comment5.target=void\ setProperties(java.util.Map)
+comment6.params=
+comment6.target=boolean\ isMarkerOnly()
+comment7.params=
+comment7.target=SymbolArgumentHandler\ clone()
+comment8.params=input
+comment8.target=com.illposed.osc.argument.OSCSymbol\ parse(java.nio.ByteBuffer)
+comment9.params=output\ value
+comment9.target=void\ serialize(com.illposed.osc.BytesReceiver,\ com.illposed.osc.argument.OSCSymbol)
+numComments=10

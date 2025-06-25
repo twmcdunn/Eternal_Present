@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=OSCParseException
+comment1.params=
+comment1.target=java.nio.ByteBuffer\ getData()
+comment2.params=message\ data
+comment2.target=OSCParseException(java.lang.String,\ java.nio.ByteBuffer)
+comment3.params=cause\ data
+comment3.target=OSCParseException(java.lang.Throwable,\ java.nio.ByteBuffer)
+comment4.params=message\ cause\ data
+comment4.target=OSCParseException(java.lang.String,\ java.lang.Throwable,\ java.nio.ByteBuffer)
+numComments=5

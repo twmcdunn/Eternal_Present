@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=MessageSelector
+comment0.text=\n\ Checks\ whether\ an\ OSC\ <i>Message</i>\ fulfills\ certain\ criteria.\n
+comment1.params=
+comment1.target=boolean\ isInfoRequired()
+comment1.text=\n\ Returns\ whether\ this\ selector\ requires\ meta-info\ to\ be\ present\ for\ messages\n\ that\ are\ checked\ for\ matching.\n\ @return\ {@code\ true}\ if\ this\ matcher\ requires\ meta-info\n
+comment2.params=messageEvent
+comment2.target=boolean\ matches(OSCMessageEvent)
+comment2.text=\n\ Checks\ whether\ the\ OSC\ <i>Message</i>\ in\ question\ matches\ this\ selector.\n\ @param\ messageEvent\ the\ message\ and\ meta-data\ to\ be\ checked\ if\ it\ matches\n\ @return\ {@code\ true}\ if\ this\ matcher\ selects\ the\ message\ in\ question\n
+numComments=3

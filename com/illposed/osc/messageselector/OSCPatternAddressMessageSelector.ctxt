@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=OSCPatternAddressMessageSelector
+comment0.text=\n\ Checks\ whether\ an\ OSC\ <i>Address\ Pattern</i>\ matches\ a\ given\ wildcard\ expression,\n\ as\ described\ in\ the\ OSC\ 1.0\ protocol\ specification.\n\ For\ details,\ see\ the\ "OSC\ Message\ Dispatching\ and\ Pattern\ Matching"\ section\n\ in\ <a\ href\="http\://opensoundcontrol.org/spec-1_0">the\ OSC\ 1.0\ specification\n\ </a>.\n\ This\ also\ supports\ the\ path-traversal\ wildcard\ "//",\n\ as\ specified\ in\ OSC\ 1.1\ (borrowed\ from\ XPath).\n\n\ <p>\n\ A\ coarse\ history\ of\ the\ code\ in\ the\ function\n\ {@link\ OSCPatternAddressMessageSelector\#matches(String,\ String)},\n\ from\ the\ origin\ to\ JavaOSC\:\n\ </p>\n\ <ol>\n\ <li>\n\ \ \ <b>robust\ glob\ pattern\ matcher</b><br>\n\ \ \ language\:\ <i>C</i><br>\n\ \ \ author\:\ <i>ozan\ s.\ yigit/dec\ 1994</i><br>\n\ \ \ matching\ code\ license\:\ <i>public\ domain</i><br>\n\ \ \ <a\ href\="http\://www.cse.yorku.ca/~oz/glob.bun">source\ location</a><br>\n\ </li>\n\ <li>\n\ \ \ <b>Open\ SoundControl\ kit</b><br>\n\ \ \ language\:\ <i>C++</i><br>\n\ \ \ matching\ code\ license\:\ <i>public\ domain</i><br>\n\ \ \ library\ license\:\ <i>LGPL\ 2.1+</i><br>\n\ \ \ <a\ href\="http\://archive.cnmat.berkeley.edu/OpenSoundControl/src/OSC-Kit/OSC-pattern-match.c">\n\ \ \ source\ location</a><br>\n\ </li>\n\ <li>\n\ \ \ <b>LibLO</b><br>\n\ \ \ language\:\ <i>C++</i><br>\n\ \ \ library\ license\:\ <i>LGPL\ 2.1+</i><br>\n\ \ \ <a\ href\="https\://sourceforge.net/p/liblo/git/ci/master/tree/src/pattern_match.c">\n\ \ \ source\ location</a><br>\n\ </li>\n\ <li>\n\ \ \ <b>JavaOSC</b><br>\n\ \ \ language\:\ <i>Java</i><br>\n\ \ \ matching\ code\ license\:\ <i>public\ domain</i><br>\n\ \ \ library\ license\:\ <i>BSD\ 3-Clause</i><br>\n\ </li>\n\ </ol>\n
+comment1.params=selector
+comment1.target=OSCPatternAddressMessageSelector(java.lang.String)
+comment1.text=\n\ Creates\ a\ selector\ that\ may\ take\ a\ simple\ address\ or\ a\ wildcard\ as\ matching\ criteria.\n\n\ @param\ selector\ either\ a\ fixed\ address\ like\ "/sc/mixer/volume",\n\ \ \ or\ a\ selector\ pattern\ (a\ mix\ between\ wildcards\ and\ regex)\n\ \ \ like\ "/??/mixer/*",\ see\ {@link\ OSCPatternAddressMessageSelector\ the\ class\ comment}\n\ \ \ for\ more\ details\n
+comment2.params=other
+comment2.target=boolean\ equals(java.lang.Object)
+comment3.params=
+comment3.target=int\ hashCode()
+comment4.params=
+comment4.target=boolean\ isInfoRequired()
+comment5.params=messageEvent
+comment5.target=boolean\ matches(com.illposed.osc.OSCMessageEvent)
+comment6.params=addressOrPattern
+comment6.target=java.util.List\ splitIntoParts(java.lang.String)
+comment6.text=\n\ Splits\ an\ OSC\ message\ address\ or\ address\ selector\ pattern\ into\ parts\ that\ are\ convenient\n\ during\ the\ matching\ process.\n\ @param\ addressOrPattern\ to\ be\ split\ into\ parts,\ e.g.\:\ "/hello/",\ "/hello//world//"\n\ @return\ the\ given\ address\ or\ pattern\ split\ into\ parts\:\ {"hello"},\ {"hello,\ "",\ "world",\ ""}\n
+comment7.params=patternParts\ patternPartIndex\ messageAddressParts\ addressPartIndex
+comment7.target=boolean\ matches(java.util.List,\ int,\ java.util.List,\ int)
+comment7.text=\n\ Tries\ to\ match\ an\ OSC\ <i>Address\ Pattern</i>\ to\ a\ selector,\n\ both\ already\ divided\ into\ their\ parts.\n\ @param\ patternParts\ all\ the\ parts\ of\ the\ pattern\n\ @param\ patternPartIndex\ index/pointer\ to\ the\ current\ part\ of\ the\ pattern\ we\ are\ looking\ at\n\ @param\ messageAddressParts\ all\ the\ parts\ of\ the\ address\n\ @param\ addressPartIndex\ index/pointer\ to\ the\ current\ part\ of\ the\ address\ we\ are\ looking\ at\n\ @return\ true\ if\ the\ address\ matches,\ false\ otherwise\n
+comment8.params=str\ p
+comment8.target=boolean\ matches(java.lang.String,\ java.lang.String)
+comment8.text=\n\ Tries\ to\ match\ an\ OSC\ <i>Address\ Pattern</i>\ part\ to\ a\ part\ of\n\ a\ selector.\n\ This\ code\ was\ copied\ and\ adapted\ from\ LibLo,\n\ and\ is\ licensed\ under\ the\ Public\ Domain.\n\ For\ more\ details\ see\:\n\ {@link\ OSCPatternAddressMessageSelector\ the\ class\ comment}.\n\ @param\ str\ address\ part\n\ @param\ p\ pattern\ part\n\ @return\ true\ if\ the\ address\ part\ matches,\ false\ otherwise\n
+numComments=9

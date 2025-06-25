@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=UnsignedIntegerArgumentHandler
+comment0.text=\n\ Parses\ and\ serializes\ an\ OSC\ unsigned\ type\ (32bit\ unsigned\ integer).\n
+comment1.params=
+comment1.target=UnsignedIntegerArgumentHandler()
+comment1.text=Allow\ overriding,\ but\ somewhat\ enforce\ the\ ugly\ singleton.
+comment2.params=
+comment2.target=char\ getDefaultIdentifier()
+comment3.params=
+comment3.target=java.lang.Class\ getJavaClass()
+comment4.params=properties
+comment4.target=void\ setProperties(java.util.Map)
+comment5.params=
+comment5.target=boolean\ isMarkerOnly()
+comment6.params=
+comment6.target=UnsignedIntegerArgumentHandler\ clone()
+comment7.params=input
+comment7.target=com.illposed.osc.argument.OSCUnsigned\ parse(java.nio.ByteBuffer)
+comment7.text=\n\ Reads\ an\ unsigned\ integer\ (32\ bit)\ from\ the\ byte\ stream.\n\ This\ code\ is\ copied\ from\ <a\ href\="http\://darksleep.com/player/JavaAndUnsignedTypes.html">\n\ here</a>,\ and\ it\ is\ licensed\ under\ the\ Public\ Domain.\n\ @return\ single\ precision,\ unsigned\ integer\ (32\ bit)\ wrapped\ in\ a\ 64\ bit\ integer\ (long)\n
+comment8.params=output\ value
+comment8.target=void\ serialize(com.illposed.osc.BytesReceiver,\ com.illposed.osc.argument.OSCUnsigned)
+numComments=9
