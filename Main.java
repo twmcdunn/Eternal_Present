@@ -96,7 +96,7 @@ public class Main {
         String jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
         System.out.println(jarPath);
         if (jarPath.startsWith("/Users/maestro/Library/Application Support/Code/User/workspaceStorage")) {// vscode run
-            jarPath = "/Users/maestro/Documents/Coding/git_e_p/Eternal_Present/Main.java";//"/Users/maestro/Documents/Coding/Eternal_Present/Main.java";
+            jarPath = "/Users/maestro/Documents/Coding/Eternal_Present/Main.java";//"/Users/maestro/Documents/Coding/Eternal_Present/Main.java";
         }
         absPath = new File(jarPath).getParentFile().getAbsolutePath();
         ProcessBuilder launchSCSynth = new ProcessBuilder(absPath + "/Headless_SCSynth/Resources/scsynth",//"/SuperCollider/Contents/Resources/scsynth",
