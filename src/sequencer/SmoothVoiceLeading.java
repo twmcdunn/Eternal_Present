@@ -1,3 +1,4 @@
+package src.sequencer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -79,7 +80,7 @@ public class SmoothVoiceLeading {
     }
 
     // @Precondition: firstChord and secondChord have the same number of notes
-    public static int[] smoothVoiceLeadingToTarget(int[] firstChord, int[] secondChord, int target, int tet) {
+    public static int[] smoothVoiceLeadingToTarget(int[] firstChord, int[] secondChord, double target, int tet) {
         ArrayList<Integer> secondChordAsArrayList = arrToArrList(secondChord);
         ArrayList<ArrayList<Integer>> allOrders = getAllOrders(secondChordAsArrayList);
 

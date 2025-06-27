@@ -1,4 +1,8 @@
+package src.sound;
 import com.illposed.osc.transport.*;
+
+import src.Main;
+
 import com.illposed.osc.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,16 +98,19 @@ public class OSCSender {
         }
     }
 
-    public void addSynthDef() {
-        List<Object> args = new ArrayList<>();
-        args.add(Main.absPath + "/sc_data/pno.scsyndef");
-        OSCMessage msg = new OSCMessage("/d_load", args);
-        try {
-            sender.send(msg);
-        } catch (IOException ioex) {
-            System.out.println(ioex);
-        } catch (OSCSerializeException oscSerEx) {
-            System.out.println(oscSerEx);
+    public void addSynthDefs() {
+        String[] synthDefs = { "pno", "delay" };
+        for (String synthDef : synthDefs) {
+            List<Object> args = new ArrayList<>();
+            args.add(Main.absPath + "/sc_data/" + synthDef + ".scsyndef");
+            OSCMessage msg = new OSCMessage("/d_load", args);
+            try {
+                sender.send(msg);
+            } catch (IOException ioex) {
+                System.out.println(ioex);
+            } catch (OSCSerializeException oscSerEx) {
+                System.out.println(oscSerEx);
+            }
         }
     }
 
@@ -139,16 +146,16 @@ public class OSCSender {
         }
     }
 
-    public void testSynth1() {
+    public void addDelay(double delayTime) {
         List<Object> args = new ArrayList<>();
-        args.add("pno");// name
+        args.add("delay");// name
         args.add(curNodeID++);// id
         args.add(0);// add to head of target
         args.add(0);// target
 
         // testBuffnum
-        args.add(0);
-        args.add(0f);// "\\mid");
+        args.add("delayTime");
+        args.add((float) delayTime);// "\\mid");
         // args.add(61.0f);// buffNum
         OSCMessage msg = new OSCMessage("/s_new", args);
         try {
@@ -160,32 +167,14 @@ public class OSCSender {
         }
     }
 
-    public void testSynth() {
-        List<Object> args = new ArrayList<>();
-        args.add("pno");// name
-        args.add(curNodeID++);// id
-        args.add(0);// add to head of target
-        args.add(1);// target
-
-        // testBuffnum
-        // args.add(61.0f);// buffNum
-        OSCMessage msg = new OSCMessage("/s_new", args);
-        try {
-            sender.send(msg);
-        } catch (IOException ioex) {
-            System.out.println(ioex);
-        } catch (OSCSerializeException oscSerEx) {
-            System.out.println(oscSerEx);
-        }
-    }
-
-    public void playPnoNote(double midiNum) {
-       // midiNum *= 15;
+    public int playPnoNote(double midiNum, double amp) {
+        int node = curNodeID;
+        // midiNum *= 15;
         int closestMid = -1;
         double dist = Double.MAX_VALUE;
         int buffNum = 0;
 
-        int dyn = 1;
+        int dyn = (int) (amp * 3);
 
         for (int[] datum : buffMidiData.get(dyn)) {
             int mid = datum[0];
@@ -208,9 +197,28 @@ public class OSCSender {
 
         args.add("mid");
         args.add((float) midiNum);
+
+        args.add("amp");
+        args.add((float) amp);
         // vol and key?
 
         OSCMessage msg = new OSCMessage("/s_new", args);
+        try {
+            sender.send(msg);
+        } catch (IOException ioex) {
+            System.out.println(ioex);
+        } catch (OSCSerializeException oscSerEx) {
+            System.out.println(oscSerEx);
+        }
+        return node;
+    }
+
+    public void endNode(int node) {
+        List<Object> args = new ArrayList<>();
+        args.add(node);
+        args.add("gate");
+        args.add(0);
+        OSCMessage msg = new OSCMessage("/n_set", args);
         try {
             sender.send(msg);
         } catch (IOException ioex) {

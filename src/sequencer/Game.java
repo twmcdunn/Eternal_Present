@@ -1,3 +1,4 @@
+package src.sequencer;
 import java.util.ArrayList;
 public class Game extends ArrayList<Board>{
     int[][] grid;

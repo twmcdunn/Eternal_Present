@@ -1,3 +1,4 @@
+package src.sequencer;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,7 +26,6 @@ public class Sequencer {
     public int[][] alternateChords;
     public double[] probDistOfAltChords;
     public static ArrayList<ChordRecord> chordRecords;
-    public double dir; // used to control direction of gestures
     public int modeTrans;// amount upward to transpose mode to match last chords
     // this is updated when getChords() is called
     // no logic is currently implemented to identify *WHICH* mode is used, in cases
@@ -34,7 +34,6 @@ public class Sequencer {
     // to implement this, start with Board.fitsMode()
 
     public Sequencer(int type) {
-        dir = 0.5;
         switch (type) {
             case 0:
                 TET = 15;

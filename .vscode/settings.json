@@ -3,6 +3,6 @@
         "."
     ],
     "java.project.referencedLibraries": [
-        "slf4j-api-2.0.17.jar"
+        "resources/slf4j-api-2.0.17.jar"
     ]
 }

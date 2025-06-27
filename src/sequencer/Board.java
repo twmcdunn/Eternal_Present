@@ -1,3 +1,4 @@
+package src.sequencer;
 import java.util.ArrayList;
 public class Board extends ArrayList<Triad>{
     boolean isComposite, compTested;
