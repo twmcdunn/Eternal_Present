@@ -67,8 +67,9 @@ public class Main {
     public static void initializeAbsPath() throws URISyntaxException {
         String jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
         System.out.println(jarPath);
-        if (jarPath.startsWith("/Users/maestro/Library/Application Support/Code/User/workspaceStorage")) {// vscode run
-            jarPath = "/Users/maestro/Documents/Coding/Eternal_Present/src/Main.java";// "/Users/maestro/Documents/Coding/Eternal_Present/Main.java";
+        if (jarPath.contains("workspaceStorage")) {// vscode run
+            TextIO.readFile("src/pwd.txt");
+            jarPath = TextIO.getln();// "/Users/maestro/Documents/Coding/Eternal_Present/Main.java";
         }
         absPath = new File(jarPath).getParentFile().getParentFile().getAbsolutePath() + "/resources";
 

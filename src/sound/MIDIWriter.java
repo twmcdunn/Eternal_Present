@@ -18,14 +18,22 @@ import java.io.File;
 public class MIDIWriter {
     public static Sequence midiSequence, midiInputSequence;
     public static int res = 256;// 2048;//128;
+    public static boolean selectFile = false;
 
     public static void main(String[] args) throws Exception {
-        Main.initializeAbsPath();
-        JFileChooser fileChooser = new JFileChooser(new File(Main.absPath).getParentFile().getAbsolutePath());
-        fileChooser.showOpenDialog(null);
-        openMidi(fileChooser.getSelectedFile());
-        File outFile = new File(fileChooser.getSelectedFile().getParentFile().getAbsolutePath() + "/filtered_"
-                + fileChooser.getSelectedFile().getName());
+        File inFile = null;
+
+        if (selectFile) {
+            Main.initializeAbsPath();
+            JFileChooser fileChooser = new JFileChooser(new File(Main.absPath).getParentFile().getAbsolutePath());
+            fileChooser.showOpenDialog(null);
+        } else {
+            inFile = new File("/Users/peanutbutter/NFS_Share/Eternal_Present.mid");
+        }
+        openMidi(inFile);
+        printOutMidiFile();
+        File outFile = new File(inFile.getParentFile().getAbsolutePath() + "/filtered_"
+                + inFile.getName());
         writeMidiFile(outFile);
 
     }
@@ -38,7 +46,21 @@ public class MIDIWriter {
         }
     }
 
-    public static void writeMidiFile(File file) throws Exception{
+    public static void printOutMidiFile() {
+        Track[] tracks = midiInputSequence.getTracks();
+        for (int t = 0; t < tracks.length; t++) {
+            System.out.println("TRACK " + t);
+            for (int i = 0; i < tracks[t].size(); i++) {
+                MidiEvent ev = tracks[t].get(i);
+                MidiMessage m = ev.getMessage();
+                if (m instanceof ShortMessage && ((ShortMessage) m).getCommand() == ShortMessage.NOTE_ON) {
+                    System.out.println("    " + ((ShortMessage) m).getData1() + "," + ev.getTick());
+                }
+            }
+        }
+    }
+
+    public static void writeMidiFile(File file) throws Exception {
         MIDIModule.generatePianoMaps();
         try {
             midiSequence = new Sequence(midiInputSequence.getDivisionType(), midiInputSequence.getResolution(), 15);
@@ -47,23 +69,37 @@ public class MIDIWriter {
         }
 
         Track[] tracks = midiInputSequence.getTracks();
-        for (int t = 0; t < 2; t++) {
-            processTrack(tracks[t], (event, sm, isNoteOn) -> {
+        processTrack(tracks[2], (event, sm, isNoteOnOrOff) -> {
+            if (isNoteOnOrOff) {
                 int outTrackNum = MIDIModule.convertPC(sm.getData1());
-                double note = MIDIModule.convertNote(sm.getData1());
-                int midiNote = (int) Math.rint(note);
+                // double note = MIDIModule.convertNote(sm.getData1());
+                int midiNote = convertOct(sm.getData1());// (int) Math.rint(note);
                 try {
                     sm.setMessage(sm.getStatus(), midiNote, sm.getData2());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "ERROR: " + e);
                 }
                 midiSequence.getTracks()[outTrackNum].add(event);
-            });
-        }
+            } else {
+                for (int i = 0; i < 15; i++) {
+                    midiSequence.getTracks()[i].add(event);
+                }
+            }
+        });
+
+        processTrack(tracks[0], (event, sm, isNoteOnOrOff) -> {
+            if (!isNoteOnOrOff) {
+                midiSequence.getTracks()[0].add(event);
+            }
+        });
 
         for (int i = 0; i < 15; i++) {
             try {
-                int dev = 64 + (int) Math.rint(-0.01 * ((i % 5) * 20) * 32);
+                int dev = (int) Math.rint(-0.01 * ((i % 5) * 20) * 32);
+                if (i % 5 == 4) {
+                    dev = (int) (32 * (.2));
+                }
+                System.out.println(dev);
                 ShortMessage pbMessage = new ShortMessage(ShortMessage.PITCH_BEND, 0, 64, 64 + dev);
                 midiSequence.getTracks()[i].add(new MidiEvent(pbMessage, 1L));
             } catch (Exception e) {
@@ -74,9 +110,17 @@ public class MIDIWriter {
         MidiSystem.write(midiSequence, 1, file);
     }
 
+    public static int convertOct(int note) {
+        if (note < 60) {
+            note -= 24;
+            return note + 60;
+        }
+        return note;
+    }
+
     @FunctionalInterface
     interface ProcessEvent {
-        void process(MidiEvent event, ShortMessage sm, boolean isNoteOn);
+        void process(MidiEvent event, ShortMessage sm, boolean isNoteOnOrOff);
     }
 
     public static void processTrack(Track track, ProcessEvent p) {
@@ -87,9 +131,10 @@ public class MIDIWriter {
                     && (((ShortMessage) message).getCommand() == ShortMessage.NOTE_ON
                             || ((ShortMessage) message).getCommand() == ShortMessage.NOTE_OFF)) {
                 ShortMessage sm = (ShortMessage) message;
-                p.process(event, sm, sm.getCommand() == ShortMessage.NOTE_ON);
+                p.process(event, sm,
+                        sm.getCommand() == ShortMessage.NOTE_ON || sm.getCommand() == ShortMessage.NOTE_OFF);
             } else {
-                midiSequence.getTracks()[0].add(event);
+                p.process(event, null, false); // midiSequence.getTracks()[0].add(event);
             }
         }
     }

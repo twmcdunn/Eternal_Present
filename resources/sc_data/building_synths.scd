@@ -67,3 +67,47 @@ s.dumpOSC(1);
 
 s.sendMsg("/n_set", 0, "freq", 500);
 
+(
+fork{
+	SynthDef.new(\filtNoise, {
+		arg freq = 440;
+		var sig, frArr = [1, 2.5, 3.5, 4.5, 6.5, 7.5], bpArr, peak;
+		sig = In.ar(2);//WhiteNoise.ar();
+		peak = Amplitude.ar(sig,0.025,0.025);
+		peak = peak * EnvGen.ar(Env.adsr(0.01,0,1,0.01), peak.madd(1,-0.005).max(0));
+		peak = peak.madd(10);
+		//peak = Limiter.ar(peak);
+		10.do({peak = LPF.ar(peak,40);});
+		//peak = EnvGen.kr(Env.adsr(0.025,0,1,0.025), peak.madd(1,-0.01).max(0));
+		//peak = EnvGen.kr(Env.adsr(1,0,1,1), peak);
+
+		//sig = CombC.ar(sig,0.2,1/freq.lag(0.05),3);
+		1.do({
+			bpArr = Array.fill(frArr.size, {arg i;
+				var unfilt = sig;
+
+				50.do({
+					unfilt = BPF.ar(unfilt, frArr[i] * freq.lag(0.05),0.01);
+				});
+				//unfilt = Compander.ar(unfilt,unfilt,0.1,1,0.1);
+				unfilt = Normalizer.ar(unfilt).madd(1/6.0);
+
+				unfilt;
+			});
+			sig = Mix.ar(bpArr);
+		});
+		//sig = BPF.ar(sig, freq.lag(0.05));
+		sig = sig.madd(\amp.kr(1).lag(0.05) * peak);
+		Out.ar(0,sig.dup);
+	}).add;
+
+
+
+	s.sync;
+
+	a = Synth.new(\filtNoise,[\freq, 800, \amp, 1]);
+}
+)
+a.set(\freq, 1000)
+a.set(\freq, 1000* 8 / 7)
+
