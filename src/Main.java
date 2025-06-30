@@ -62,6 +62,8 @@ public class Main {
                     scSynth.destroy();
                 }));
 
+        permutatingProcess();
+
     }
 
     public static void initializeAbsPath() throws URISyntaxException {

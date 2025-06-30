@@ -19,6 +19,7 @@ public class MIDIWriter {
     public static Sequence midiSequence, midiInputSequence;
     public static int res = 256;// 2048;//128;
     public static boolean selectFile = false;
+    public static boolean isPianoB = false;
 
     public static void main(String[] args) throws Exception {
         File inFile = null;
@@ -63,7 +64,7 @@ public class MIDIWriter {
     public static void writeMidiFile(File file) throws Exception {
         MIDIModule.generatePianoMaps();
         try {
-            midiSequence = new Sequence(midiInputSequence.getDivisionType(), midiInputSequence.getResolution(), 15);
+            midiSequence = new Sequence(midiInputSequence.getDivisionType(), midiInputSequence.getResolution(), 16);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR: " + e);
         }
@@ -85,6 +86,31 @@ public class MIDIWriter {
                     midiSequence.getTracks()[i].add(event);
                 }
             }
+        });
+
+        isPianoB = false;
+        processTrack(tracks[1], (event, sm, isNoteOnOff) -> {
+            if (sm != null && sm.getCommand() == ShortMessage.PITCH_BEND) {// assums the nex message will be the corresponding note on
+                isPianoB = true;
+                return;
+            }
+
+            if (isNoteOnOff && sm.getData2() > 0 && sm.getCommand() == ShortMessage.NOTE_ON) {
+                int pc = MIDIModule.convertPC(sm.getData1());
+                if (isPianoB) {
+                    pc++;// assuming only 4 9 an 14 are used here
+                }
+                int dev = (int) Math.rint(-0.01 * ((pc % 5) * 20) * 32);
+                try {
+                    ShortMessage pbMessage = new ShortMessage(ShortMessage.PITCH_BEND, 0, 64, 64 + dev);
+                    MidiEvent pbEvent = new MidiEvent(pbMessage, event.getTick() - 1);
+                    midiSequence.getTracks()[15].add(pbEvent);
+                } catch (InvalidMidiDataException e) {
+                    e.printStackTrace();
+                }
+            }
+            midiSequence.getTracks()[15].add(event);
+            isPianoB = false;
         });
 
         processTrack(tracks[0], (event, sm, isNoteOnOrOff) -> {
