@@ -1,3 +1,6 @@
 SuperCollider/*
 resources/Headless_SCSynth/*
 src/pwd.txt
+#excluding these for now (will be included later)
+resources/piano_samples/*
+resources/sc_data/*
