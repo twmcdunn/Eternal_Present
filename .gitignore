@@ -2,6 +2,6 @@ SuperCollider/*
 resources/Headless_SCSynth/*
 src/pwd.txt
 #excluding these for now (will be included later)
--r resources/piano_samples/*
--r resources/sc_data/*
+resources/piano_samples/*
+resources/sc_data/*
 MIDI_Writer.jar
