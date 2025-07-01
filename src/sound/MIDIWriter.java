@@ -90,7 +90,8 @@ public class MIDIWriter {
 
         isPianoB = false;
         processTrack(tracks[1], (event, sm, isNoteOnOff) -> {
-            if (sm != null && sm.getCommand() == ShortMessage.PITCH_BEND) {// assums the nex message will be the corresponding note on
+            if (sm != null && sm.getCommand() == ShortMessage.PITCH_BEND) {// assums the nex message will be the
+                                                                           // corresponding note on
                 isPianoB = true;
                 return;
             }
@@ -232,4 +233,6 @@ public class MIDIWriter {
         }
         initializeMidiSequence();
     }
+
+
 }
