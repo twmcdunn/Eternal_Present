@@ -86,7 +86,7 @@ public class Triad// implements Cloneable
                 ArrayList<int[]> initialTriad = new ArrayList<int[]>();
                 initialTriad.add(triad);
                 int numberOfMembersToTransform = triad.length / 2;
-                if (true && triad.length % 2 == 0)
+                if (true && triad.length % 2 == 0)//true
                     numberOfMembersToTransform--;
                 if (false && !directed)
                     numberOfMembersToTransform = 1;

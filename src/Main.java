@@ -113,10 +113,20 @@ public class Main {
         thread.start();
     }
 
+    public static boolean directionless = true;
     public static void permutatingProcess() {
 
         Sequencer seq = new Sequencer(0);
-        int[][] lastChords = new int[][] { { 75, 75, 75, 75, 75 }, { 75, 75, 75, 75, 75 } };// start at middle c
+        int midC = (int)Math.rint(60 * seq.TET / 12);
+        int chordCard = seq.triadDictionary[0].length;
+
+
+        int[][] lastChords = new int[2][chordCard];// start at middle c
+        for(int[] c: lastChords){
+            for(int i = 0; i < c.length; i++){
+                c[i] = midC;
+            }
+        }
         for (int i = 0; i < 100; i++) {
             int[][] newChords = seq.getChords();// progress chords
             /*
@@ -127,19 +137,19 @@ public class Main {
              */
             for (int n = 0; n < lastChords.length; n++) {
                 double target = 8 * 12 * dir + 12;
-                target *= 15 / 12.0;
+                target *= seq.TET / 12.0;
                 double aveNote = 0;
                 for (int[] c : lastChords)
                     for (int note : c)
                         aveNote += note;
                 aveNote /= lastChords.length * lastChords[0].length;
 
-                if (Math.abs(aveNote - target) < 15 / 2) {// if chord is within half octave of target, don't apply
+                if (directionless || Math.abs(aveNote - target) < seq.TET / 2) {// if chord is within half octave of target, don't apply
                                                           // direction to voiceleading
-                    lastChords[n] = SmoothVoiceLeading.smoothVoiceLeading(lastChords[n], newChords[n], 15);
+                    lastChords[n] = SmoothVoiceLeading.smoothVoiceLeading(lastChords[n], newChords[n], seq.TET);
                 } else {
                     lastChords[n] = SmoothVoiceLeading.smoothVoiceLeadingToTarget(lastChords[n], newChords[n], target,
-                            15);
+                            seq.TET);
                 }
             }
             for (int note : lastChords[0]) {

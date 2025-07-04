@@ -3,6 +3,7 @@
         "."
     ],
     "java.project.referencedLibraries": [
-        "resources/slf4j-api-2.0.17.jar"
+        "resources/commons-math3-3.6.1.jar",
+        "/Users/maestro/Documents/Coding/Eternal_Present/resources/slf4j-api-2.0.17.jar"
     ]
 }

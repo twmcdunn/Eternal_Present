@@ -1,4 +1,5 @@
 package src.sequencer;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -45,7 +46,24 @@ public class Sequencer {
                 // type, root
                 initializeHardCodedSource(new int[][] { { 0, 1 }, { 1, 2 } });
                 break;
-
+            case 1:
+                TET = 16;
+                triadDictionary = new int[][] {
+                        // 4 4 3 5 3 4 4 5
+                        { 0, 4, 8, 11 }, { 0, 3, 7, 11 },
+                        // 4 3 4 5. (Inversionally symmetrical (is its own octatonic complement))
+                        { 0, 4, 7, 11 },
+                        {0,4,8,12}, //ditto
+                        {0,4,8,9}, // ditto
+                        {0,1,4,5}, //ditto
+                        {0,1,8,9}, //ditto
+                        {0,3,4,11}, {0,8,9,13}
+                };
+                modes = new int[][] { { 0, 1, 4, 5, 8, 9, 12, 13 } };
+                sourceSyntagm = new Board(this);
+                // type, root
+                initializeHardCodedSource(new int[][] { { 0, 1 }, { 1, 13 },{ 1, 15 }, { 0, 3 }});
+                break;
         }
 
         initializeVariables();
@@ -216,6 +234,7 @@ public class Sequencer {
     public int[][] getChords() {
         int minAllowedSynt = 3;
         minAllowedSynt = 0;
+        int allowedCommonTones = Integer.MAX_VALUE;
 
         ArrayList<Board> allPossibleMoves = getAllPossibleMoves(myGame);
         ArrayList<Game> allPossibleGames = new ArrayList<Game>();
@@ -225,7 +244,8 @@ public class Sequencer {
         int bestChordPop = Integer.MAX_VALUE;
         for (Board move : allPossibleMoves) {
             if (move.getMinSyntacticDistance() < minAllowedSynt ||
-                    myGame.get(myGame.size() - 1).get(move.size() - 1).findShortestPath(move.get(0)) < minAllowedSynt)
+                    myGame.get(myGame.size() - 1).get(move.size() - 1).findShortestPath(move.get(0)) < minAllowedSynt
+                    || move.commonTones() > allowedCommonTones)
                 continue;
             Game game = new Game(myGame, this);
             game.makeMove(move);

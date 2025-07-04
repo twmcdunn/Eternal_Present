@@ -32,13 +32,13 @@ SynthDef.new(\pno, {
 		arg buff = 0, origMid = 60, mid = 60, amp = 0.125, gate = 1.0;
 	var rate, sig, env, envGen;
 	rate = BufRateScale.kr(buff) * mid.midicps / origMid.midicps;
-	sig = PlayBuf.ar(2,buff, rate, doneAction: Done.freeSelf);
+	sig = PlayBuf.ar(1,buff, rate, doneAction: Done.freeSelf);
 	sig = sig.madd(amp); //amp
 	env = Env.adsr(0,0,1,0.25);//really just using this for release phase
 	envGen = EnvGen.ar(env,gate,doneAction:Done.freeSelf);
 	sig = sig.madd(envGen);
-	Out.ar(0, sig);
-}).writeDefFile("/Users/maestro/Documents/Coding/Eternal_Present/sc_data/");
+	Out.ar(0, sig.dup);
+}).writeDefFile("/Users/maestro/Documents/Coding/Eternal_Present/resources/sc_data/");
 
 SynthDef.new(\delay, {
 	arg inBus = 0, outBus = 0, delayTime = 0.5, decayTime = 3;

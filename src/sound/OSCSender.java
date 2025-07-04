@@ -81,6 +81,7 @@ public class OSCSender {
                         buffMidiData.get(dyn).add(new int[] { midiNums[num], buffNumToLoad });
 
                         List<Object> args = new ArrayList<>();
+                        //System.out.println("BUT TO LOAD: " + buffNumToLoad);
                         args.add(buffNumToLoad++);
                         args.add(path.toString());
                         OSCMessage msg = new OSCMessage("/b_allocRead", args);
@@ -192,6 +193,7 @@ public class OSCSender {
 
         args.add("buff");
         args.add((float) buffNum);// buffNum
+        //System.out.println("PLYING BUFF: " + buffNum);
         args.add("origMid");
         args.add((float) closestMid);
 
