@@ -1,4 +1,5 @@
 package src.sequencer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,17 +27,25 @@ public class Triad// implements Cloneable
 
     public static final int[] COMPOSITE = new int[] { 0, 4, 5, 6, 7, 11 };
     public ArrayList<Triad> myNuclearFamily;
-    
+
     public Sequencer s;
 
     public Triad(int tp, int rt, Sequencer seq) {
         s = seq;
         type = tp;
         root = rt;
-        if (seq.transformationMatrix == null)
-            initializeTransformationMatrix();
-        transformationGroup = seq.transformationMatrix.get(type);
+        // if (seq.transformationMatrix == null)
+        // initializeTransformationMatrix();
+        // transformationGroup = seq.transformationMatrix.get(type);
         myNuclearFamily = null;
+    }
+
+    public int[][] getTransformationGroup() {
+        if (transformationGroup != null)
+            return transformationGroup;
+
+        transformationGroup = s.transformationMatrix.get(type);
+        return transformationGroup;
     }
 
     public ArrayList<Integer> notes() {
@@ -47,11 +56,82 @@ public class Triad// implements Cloneable
         return notes;
     }
 
+    public ArrayList<ArrayList<Integer>> getAllRotations(ArrayList<Integer> notes) {
+        ArrayList<ArrayList<Integer>> rotations = new ArrayList<ArrayList<Integer>>();
+        for (int firstNote = 0; firstNote < notes.size(); firstNote++) {
+            ArrayList<Integer> rotation = new ArrayList<Integer>();
+            for (int index = 0; index < notes.size(); index++) {
+                rotation.add(notes.get((firstNote + index) % notes.size()));
+            }
+            rotations.add(rotation);
+        }
+        return rotations;
+    }
+
+    public ArrayList<Integer> transTo0(ArrayList<Integer> notes) {
+        ArrayList<Integer> transposed = new ArrayList<Integer>();
+        for (int n = 0; n < notes.size(); n++) {
+            int note = notes.get(n) - notes.get(0);
+            if (note < 0)
+                note += s.TET;
+            transposed.add(note);
+        }
+        return transposed;
+    }
+
+    public ArrayList<Integer> getNormalOrder(ArrayList<Integer> notes) {
+        ArrayList<ArrayList<Integer>> rotations = getAllRotations(notes);
+        ArrayList<ArrayList<Integer>> bestRotations = new ArrayList<ArrayList<Integer>>();
+        for (int boundingNote = notes.size() - 1; boundingNote > 0; boundingNote--) {
+            int bestSize = Integer.MAX_VALUE;
+
+            // calculate smallest size for given bounding / framing interval
+            for (ArrayList<Integer> rotation : rotations) {
+                int interval = rotation.get(boundingNote) - rotation.get(0);
+                if (interval < 0)
+                    interval += s.TET;
+                bestSize = Math.min(bestSize, interval);
+            }
+
+            for (ArrayList<Integer> rotation : rotations) {
+                int interval = rotation.get(boundingNote) - rotation.get(0);
+                if (interval < 0)
+                    interval += s.TET;
+                if (interval == bestSize)
+                    bestRotations.add(rotation);
+            }
+            if (bestRotations.size() == 1) {
+                return bestRotations.get(0);
+            } else {// there could be multiple copies of the same rotation, in the case of
+                    // transpostional symmetry
+                boolean onlyOneUniqueRotation = true;
+                ArrayList<Integer> firstRotationAt0 = transTo0(bestRotations.get(0));
+                for (int n = 1; n < bestRotations.size(); n++) {
+                    ArrayList<Integer> rot = transTo0(bestRotations.get(n));
+                    for (int index = 0; index < firstRotationAt0.size(); index++) {
+                        if (firstRotationAt0.get(index) != rot.get(index)) {
+                            onlyOneUniqueRotation = false;
+                            break;
+                        }
+                    }
+                    if (!onlyOneUniqueRotation) {
+                        break;
+                    }
+                }
+                if (onlyOneUniqueRotation) {
+                    return bestRotations.get(0);
+                }
+            }
+            rotations = bestRotations;
+        }
+        return null;// dummy value
+    }
+
     public Triad(Triad t) {
         type = t.type;
         root = t.root;
         s = t.s;
-        transformationGroup = s.transformationMatrix.get(type);
+        transformationGroup = t.transformationGroup;// s.transformationMatrix.get(type);
         myNuclearFamily = null;
     }
 
@@ -82,11 +162,12 @@ public class Triad// implements Cloneable
             }
 
             int[][] getTransformationGroup(int[] triad, boolean directed) {
+                Triad triadObj = new Triad(triad[0], triad[1], s);
 
                 ArrayList<int[]> initialTriad = new ArrayList<int[]>();
                 initialTriad.add(triad);
                 int numberOfMembersToTransform = triad.length / 2;
-                if (true && triad.length % 2 == 0)//true
+                if (true && triad.length % 2 == 0)// true
                     numberOfMembersToTransform--;
                 if (false && !directed)
                     numberOfMembersToTransform = 1;
@@ -122,8 +203,8 @@ public class Triad// implements Cloneable
                     for (int[] potentialTriad : potentialTriads) {
                         int[] transformation = getTransformation(potentialTriad);
                         if (transformation[0] >= 0
-                                && !isIdentity(transformation, triad[0])
-                                && !containsTransformation(inchoateGroup, transformation))
+                                && !isIdentity(transformation, triadObj)
+                                && !containsTransformation(inchoateGroup, transformation, s))
                             inchoateGroup.add(transformation);
                     }
                 }
@@ -135,14 +216,29 @@ public class Triad// implements Cloneable
                 return transformationGroup;
             }
 
-            boolean isIdentity(int[] transformation, int myType) {
-                return transformation[0] == myType && transformation[1] == 0;
+            boolean isIdentity(int[] transformation, Triad myTriad) {
+                // must compare first set to all rotations of second set
+                // normal order can't be used because there are multiple normal orders for
+                // transpositionally symmetrical sets
+                // solomen's prime form can't be used because we are looking for the same
+                // transposition of the same set
+                Triad transObj = new Triad(transformation[0], transformation[1], myTriad.s);
+                ArrayList<Integer> notes1 = transObj.notes();
+                ArrayList<Integer> notes2 = myTriad.notes();
+                for (int index = 0; index < notes1.size(); index++) {
+                    if (!notes2.contains(notes1.get(index))) {
+                        return false;
+                    }
+                }
+                return true;
             }
 
-            boolean containsTransformation(ArrayList<int[]> transformations, int[] t2) {
-                for (int[] t1 : transformations)
-                    if (t1[0] == t2[0] && t1[1] == t2[1])
+            boolean containsTransformation(ArrayList<int[]> transformations, int[] t2, Sequencer s) {
+                for (int[] t1 : transformations) {
+                    Triad trans2Obj = new Triad(t1[0], t1[1], s);
+                    if (isIdentity(t2, trans2Obj))
                         return true;
+                }
                 return false;
             }
 
@@ -214,9 +310,12 @@ public class Triad// implements Cloneable
             }
 
         }
+
         Initializer init = new Initializer();
         s.transformationMatrix = init.generate3DTransformationMatrix();
+
         displayTransformationMatrix();
+
     }
 
     public void displayTransformationMatrix() {
@@ -255,6 +354,7 @@ public class Triad// implements Cloneable
             return false;
         }
         myNuclearFamily = new ArrayList<Triad>();
+        transformationGroup = s.transformationMatrix.get(type);
         for (int i = 0; i < transformationGroup.length; i++) {
             Triad unbornSibling = new Triad(transformationGroup[i][0],
                     (root + transformationGroup[i][1]) % s.TET, s);
@@ -274,11 +374,13 @@ public class Triad// implements Cloneable
     }
 
     public Triad generateTransformed(int i) {
+        transformationGroup = s.transformationMatrix.get(type);
         int[] transformation = transformationGroup[i];
-        return new Triad(transformation[0], (root + transformation[1]) % s.TET,s);
+        return new Triad(transformation[0], (root + transformation[1]) % s.TET, s);
     }
 
     public void printOutTransformations() {
+        transformationGroup = s.transformationMatrix.get(type);
         for (int i = 0; i < transformationGroup.length; i++)
             System.out.println(generateTransformed(i));
     }
@@ -300,8 +402,8 @@ public class Triad// implements Cloneable
 
     public static void test(Sequencer s) {
         Triad[][] grid = new Triad[4][s.TET];
-        Triad a = new Triad(0, 0,s);
-        Triad b = new Triad(1, 3,s);
+        Triad a = new Triad(0, 0, s);
+        Triad b = new Triad(1, 3, s);
         System.out.println(a.findShortestPath(b));
     }
 

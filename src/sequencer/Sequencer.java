@@ -53,16 +53,16 @@ public class Sequencer {
                         { 0, 4, 8, 11 }, { 0, 3, 7, 11 },
                         // 4 3 4 5. (Inversionally symmetrical (is its own octatonic complement))
                         { 0, 4, 7, 11 },
-                        {0,4,8,12}, //ditto
-                        {0,4,8,9}, // ditto
-                        {0,1,4,5}, //ditto
-                        {0,1,8,9}, //ditto
-                        {0,3,4,11}, {0,8,9,13}
+                        { 0, 4, 8, 12 }, // ditto
+                        { 0, 4, 8, 9 }, // ditto
+                        { 0, 1, 4, 5 }, // ditto
+                        { 0, 1, 8, 9 }, // ditto
+                        { 0, 3, 4, 11 }, { 0, 8, 9, 13 }
                 };
                 modes = new int[][] { { 0, 1, 4, 5, 8, 9, 12, 13 } };
                 sourceSyntagm = new Board(this);
                 // type, root
-                initializeHardCodedSource(new int[][] { { 0, 1 }, { 1, 13 },{ 1, 15 }, { 0, 3 }});
+                initializeHardCodedSource(new int[][] { { 0, 1 }, { 1, 13 }, { 1, 15 }, { 0, 3 } });
                 break;
         }
 
@@ -117,6 +117,8 @@ public class Sequencer {
         for (int i = 0; i < hardCodedSource.length; i++)
             sourceSyntagm.add(new Triad(hardCodedSource[i][0], hardCodedSource[i][1], this));
 
+        sourceSyntagm.get(0).initializeTransformationMatrix();
+
         int[][] hardCodedTelos = new int[][] { { 0, 10 }, { 1, 8 } };
         // int[][] hardCodedTelos = new int[][]{{1,8}, {3,10}};
         telos = new ArrayList<Triad>();
@@ -161,7 +163,7 @@ public class Sequencer {
         Board lastBoard = currentGame.getLastBoard();
         for (Triad t : lastBoard) {
             completeBoards = new ArrayList<Board>();
-            for (int i = 0; i < t.transformationGroup.length; i++) {// directedTransformationGroup
+            for (int i = 0; i < t.getTransformationGroup().length; i++) {// directedTransformationGroup
                 Triad transformed = t.generateTransformed(i);// generateDirectedTransformed
                 if (
                 // currentGame.notUsed(transformed) &&
@@ -234,7 +236,7 @@ public class Sequencer {
     public int[][] getChords() {
         int minAllowedSynt = 3;
         minAllowedSynt = 0;
-        //int allowedCommonTones = Integer.MAX_VALUE;
+        // int allowedCommonTones = Integer.MAX_VALUE;
 
         ArrayList<Board> allPossibleMoves = getAllPossibleMoves(myGame);
         ArrayList<Game> allPossibleGames = new ArrayList<Game>();
@@ -245,8 +247,8 @@ public class Sequencer {
         for (Board move : allPossibleMoves) {
             if (move.getMinSyntacticDistance() < minAllowedSynt ||
                     myGame.get(myGame.size() - 1).get(move.size() - 1).findShortestPath(move.get(0)) < minAllowedSynt
-                    //|| move.commonTones() > allowedCommonTones
-                    )
+            // || move.commonTones() > allowedCommonTones
+            )
                 continue;
             Game game = new Game(myGame, this);
             game.makeMove(move);
