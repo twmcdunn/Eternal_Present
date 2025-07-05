@@ -178,7 +178,7 @@ public class Sequencer {
                         b = new Board(b);
                         b.add(transformed);
                         // check if board fits in scale
-                        if (b.fitsMode())
+                        if (true || b.fitsMode())
                             completeBoards.add(b);
                     }
                 }
@@ -236,7 +236,7 @@ public class Sequencer {
     public int[][] getChords() {
         int minAllowedSynt = 3;
         minAllowedSynt = 0;
-        // int allowedCommonTones = Integer.MAX_VALUE;
+        int allowedCommonTones = 0;// Integer.MAX_VALUE;
 
         ArrayList<Board> allPossibleMoves = getAllPossibleMoves(myGame);
         ArrayList<Game> allPossibleGames = new ArrayList<Game>();
@@ -247,16 +247,17 @@ public class Sequencer {
         for (Board move : allPossibleMoves) {
             if (move.getMinSyntacticDistance() < minAllowedSynt ||
                     myGame.get(myGame.size() - 1).get(move.size() - 1).findShortestPath(move.get(0)) < minAllowedSynt
-            // || move.commonTones() > allowedCommonTones
-            )
+                    || move.commonTones() > allowedCommonTones)
                 continue;
             Game game = new Game(myGame, this);
             game.makeMove(move);
             allPossibleGames.add(game);
 
             int chordPop = 0;
-            for (Triad t : game.getLastBoard())
-                chordPop += game.grid[t.type][t.root];
+            for (Triad t : game.getLastBoard()) {
+                ArrayList<Integer> symmetries = t.getTypeSymmetries();
+                    chordPop += game.grid[t.type][t.root];
+            }
             bestChordPop = Math.min(bestChordPop, chordPop);
 
         }

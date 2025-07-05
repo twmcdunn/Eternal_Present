@@ -2,6 +2,7 @@ package src.sequencer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Abstract class Chord - write a description of the class here
@@ -18,6 +19,8 @@ public class Triad// implements Cloneable
     public static boolean ascending;
     private final String[] NOTE_NAMES = { " C", "C#", "D ", "D ", "Eb", "E ", "F ", "F#", "F#", "G ", "Ab", "A ", "Bb",
             "Bb", "B " };
+
+    public static HashMap<Integer, ArrayList<Integer>> typeSymmetries = new HashMap<Integer, ArrayList<Integer>>();
 
     /*
      * {"0-C   ","1-C#  ","2-D-  ","3-D+  ","4-Eb  ","5-E   ","6-F   ","7-F#- "
@@ -38,6 +41,28 @@ public class Triad// implements Cloneable
         // initializeTransformationMatrix();
         // transformationGroup = seq.transformationMatrix.get(type);
         myNuclearFamily = null;
+    }
+
+    public ArrayList<Integer> getTypeSymmetries() {
+        if (!typeSymmetries.containsKey(type)) {
+            ArrayList<Integer> symmetries = new ArrayList<Integer>();
+            symmetries.add(0);
+
+            ArrayList<Integer> notes = notes();
+
+            for (int t = 1; t < s.TET; t++) {
+                ArrayList<Integer> transposed = new ArrayList<Integer>();
+                for(int n: notes){
+                    transposed.add((n+t) % s.TET);
+                }
+                if(isIdentity(notes, transposed)){
+                    symmetries.add(t);
+                }
+            }
+            typeSymmetries.put(type, symmetries);
+            return symmetries;
+        }
+        return typeSymmetries.get(type);
     }
 
     public int[][] getTransformationGroup() {
@@ -133,6 +158,15 @@ public class Triad// implements Cloneable
         s = t.s;
         transformationGroup = t.transformationGroup;// s.transformationMatrix.get(type);
         myNuclearFamily = null;
+    }
+
+    public static boolean isIdentity(ArrayList<Integer> notes1, ArrayList<Integer> notes2) {
+        for (int index = 0; index < notes1.size(); index++) {
+            if (!notes2.contains(notes1.get(index))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void initializeTransformationMatrix() {

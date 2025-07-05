@@ -113,10 +113,10 @@ public class Main {
         thread.start();
     }
 
-    public static boolean directionless = true;
+    public static boolean directionless = false;
     public static void permutatingProcess() {
 
-        Sequencer seq = new Sequencer(0);
+        Sequencer seq = new Sequencer(1);
         int midC = (int)Math.rint(60 * seq.TET / 12);
         int chordCard = seq.triadDictionary[0].length;
 
